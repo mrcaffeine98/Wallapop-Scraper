@@ -1,41 +1,41 @@
 //Modulo que se encarga de hacer llamadas a la API de Wallapop
-
+//Wallapop URL https://es.wallapop.com/app/search?keywords=markus&filters_source=quick_filters&latitude=40.47954&longitude=-3.70052&max_sale_price=100&order_by=newest&distance=10000
+//Wallapop API URL https://api.wallapop.com/api/v3/general/search?keywords=markus&filters_source=quick_filters&latitude=40.47954&longitude=-3.70052&max_sale_price=100&order_by=newest&distance=10000
 const axios = require('axios')
 const fs = require('fs')
-const comms = require('./comms.js')
+const comms = require('../../comms.js')
 
 /**Funcion que se encarga de hacer llamadas a la API de wallapop
  * @param  {Object} parameters Es un objeto que contiene por propiedades los parametros de la URL
  * @return Object with all found
  */
-exports.fetch = function (parameters) {
+exports.fetch = async function (parameters) {
     const url = createURL(parameters)
-    axios.get(url)
-        .then(function response(response) {
-            //save the old result   
-            const result_old = response
+
+    const data = await axios.get(url)
+        .then(async function response(response) {
             const result = response.data
-            fs.writeFile('./WallapopItems.json', JSON.stringify(response.data), function (err) {
+            fs.writeFile('./data/WallapopItems.json', JSON.stringify(response.data), function (err) {
                 if (err) throw err;
                 console.log('Saved!');
             });
             const dateTime = comms.getNowDate()
-            fs.writeFile(`./data_backup/${dateTime}WallapopItems.json`, JSON.stringify(response.data), function (err) {
+            fs.writeFile(`./data/data_backup/${dateTime}WallapopItems.json`, JSON.stringify(response.data), function (err) {
                 if (err) throw err;
             });
-            return JSON.stringify(response.data)
+            return response.data
         })
         .catch(function (error) {
             console.log(error);
             return error
         });
-    //Also save result in a file
 
+    //Also save result in a file
+    return data
 
 
 }
 /** Creates the url
- * https://es.wallapop.com/app/search?keywords=markus&filters_source=quick_filters&latitude=40.47954&longitude=-3.70052&max_sale_price=100&order_by=newest&distance=10000
  * @param  {object} obj Object that contain all the parameters
  * @returns {string} URL
  */

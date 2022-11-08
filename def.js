@@ -9,9 +9,11 @@ exports.parameters = {
     },
     latitude: {
         //Incluir la latiudad 
+        monforteDeLemos_75:"40.47954"
     },
     longitude: {
         //Incluir la latiudad 
+        monforteDeLemos_75:"-3.70052"
     },
     min_sale_price: {
         "50":"50"
