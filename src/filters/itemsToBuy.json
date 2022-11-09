@@ -1,0 +1,26 @@
+[
+    {
+        "keywords": "markus",
+        "filters_source": "quick_filters",
+        "latitude": "40.47954",
+        "longitude": "-3.70052",
+        "max_sale_price": "100",
+        "distance": "10000"
+    },
+    {
+        "keywords": "markus",
+        "filters_source": "quick_filters",
+        "latitude": "40.47954",
+        "longitude": "-3.70052",
+        "order_by": "newest",
+        "distance": "30000"
+    },
+    {
+        "keywords": "ddr4%2016%20gb%20sodim",
+        "filters_source": "search_box",
+        "latitude": "40.47954",
+        "longitude": "-3.70052",
+        "distance": "50000",
+        "max_sale_price": "100"
+    }
+]
