@@ -35,3 +35,9 @@ exports.getNowDate = function () {
     const now = `${year}-${month}-${day}_${hour}-${minute}-${seconds}`
     return now
 }
+
+exports.delay = async function (n) {
+return new Promise(function (resolve) {
+    setTimeout(resolve, n * 1000);
+});
+}
